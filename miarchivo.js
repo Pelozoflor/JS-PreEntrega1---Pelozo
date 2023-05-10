@@ -6,7 +6,6 @@ let menuCombos = "1 - H/ Con queso Combo\n2 - h/ Completa Combo\n3 - Super hambu
 let menuTerminar = "¿Desea terminar su pedido?\n\n1 - SI\n2 - NO"
 let opcion1 = 0
 let opcion2 = 0
-let opcionTerminar = 0
 let valorItem = 0
 let valorTotal = 0
 
@@ -14,6 +13,9 @@ function seccionMenu (){
     opcion1= Number(prompt("Ingrese una opción: "))
     while(isNaN(opcion1)){
         opcion1= Number(prompt("Ingrese una opción valida: "))          
+    }
+    if(opcion1===4){
+        alert("Gracias por usar nuestro servicio, hasta pronto!")
     }
 }
 
@@ -23,6 +25,7 @@ function opcionMenu (){
         opcion2= Number(prompt("Ingrese una opción valida: "))          
     }
 }
+
 
 function Orden () {
     if(opcion1!=4){
@@ -38,14 +41,15 @@ function Orden () {
                 break
             default:
                 seccionMenu()
-                Orden()
-                break
-        
+                // Orden()
+                break  
         }
         opcionMenu ()  
     } 
     else if(opcion1=4){
         alert("El valor a abonar de su orden es : $"+ valorTotal + "\nEl pago sera recibido en caja al momento de retirar su Pedido\n\nMuchas Gracias "+nombreCliente + " por utilizar el servicio de autopedido.")
+        opcion1=0
+        opcion2=0
     }
 }
 
@@ -63,7 +67,7 @@ function subMenu (){
                 valorItem= 380
                 break
             case 4:
-                alert(nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu)
+                alert(nombreCliente+"  " + elijaMenu)
                 seccionMenu()
                 Orden()
             default:
@@ -81,7 +85,7 @@ function subMenu (){
                 valorItem= 1000
                 break
             case 4:
-                alert(nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu)
+                alert(nombreCliente+"  " + elijaMenu)
                 seccionMenu()
                 Orden()
             default:
@@ -99,7 +103,7 @@ function subMenu (){
                 valorItem= 1500
                 break
             case 4:
-                alert(nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu)
+                alert(nombreCliente+"  " + elijaMenu)
                 seccionMenu()
                 Orden()
             default:
@@ -112,11 +116,12 @@ function subMenu (){
 
 let nombreCliente = prompt("Ingrese su nombre para realizar un pedido")
 while (nombreCliente === ""){
-    nombreCliente= prompt("Ingrese su nombre para realizar un pedido")
+    nombreCliente= prompt("Debe ingresar un nombre para realizar el pedido")
 }
 
+let elijaMenu = nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu
 
-alert("¡Bienvenido/a al servicio de autopedido!\n"+nombreCliente+" te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu)
+alert("¡Bienvenido/a al servicio de autopedido!\n"+nombreCliente+ elijaMenu)
 seccionMenu()
 
 Orden()
