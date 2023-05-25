@@ -1,13 +1,40 @@
 
-let menu = "1 - Cafeteria\n2 - Hamburguesas\n3 - Combos\n4 - Terminar la compra"
-let menuCafeteria = "1 - Cafe Grande\n2 - Cafe Chico\n3 - Latte\n4- Volver"
-let menuHamburguesas = "1 - H/ Con queso\n2 - h/ Completa\n3 - Super hamburguesa \n4 - Volver"
-let menuCombos = "1 - H/ Con queso Combo\n2 - h/ Completa Combo\n3 - Super hamburguesa Combo\n4 - Volver"
+let menu = "1 - Cafeteria\n2 - Hamburguesas\n3 - Combos\n4 - Terminar la compra \n5 - Opciones Delivery sin cargo"
+const menuCafeteria = [
+    {opcion:1, desc: "Cafe Grande", precio: 350, deliveryGratis: "NO"},
+    {opcion:2, desc: "Cafe Chico", precio: 300, deliveryGratis: "NO"}, 
+    {opcion:3, desc: "Latte", precio: 380, deliveryGratis: "NO"},
+    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
+]
+
+const menuHamburguesas = [
+    {opcion:1, desc: "H/ Con queso", precio: 600, deliveryGratis: "NO"},
+    {opcion:2, desc: "h/ Completa", precio: 750, deliveryGratis: "SI"}, 
+    {opcion:3, desc: "Super hamburguesa", precio: 1000, deliveryGratis: "SI"},
+    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
+]
+
+const menuCombos = [
+    {opcion:1, desc: "H/ Con queso Combo", precio: 1100, deliveryGratis: "SI"},
+    {opcion:2, desc: "h/ Completa Combo", precio: 1250, deliveryGratis: "SI"}, 
+    {opcion:3, desc: "Super hamburguesa Combo", precio: 1500, deliveryGratis: "SI"},
+    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
+]
+
 let menuTerminar = "¿Desea terminar su pedido?\n\n1 - SI\n2 - NO"
 let opcion1 = 0
 let opcion2 = 0
 let valorItem = 0
 let valorTotal = 0
+
+function DeliveryFree () {
+const filtrado = menuHamburguesas.concat(menuCombos)
+const resultado = filtrado.filter (el => el.deliveryGratis === "SI")
+alert("Los resultados se muestran por consola, presione aceptar para ingresar una opción")
+console.log (resultado)
+opcion1=0
+}
+
 
 function seccionMenu (){
     opcion1= Number(prompt("Ingrese una opción: "))
@@ -31,25 +58,35 @@ function Orden () {
     if(opcion1!=4){
         switch (opcion1){
             case 1:
-                alert(menuCafeteria)
+                console.log(menuCafeteria)
                 break
             case 2:
-                alert(menuHamburguesas)
+                console.log(menuHamburguesas)
                 break
             case 3:
-                alert(menuCombos)
+                console.log(menuCombos)
+                break
+            case 4:
+                break
+            case 5:
+                DeliveryFree()
+                alert(elijaMenu)
+                seccionMenu()
+                Orden()
                 break
             default:
+                alert(elijaMenu)
                 seccionMenu()
-                // Orden()
+                Orden()
                 break  
-        }
-        opcionMenu ()  
+            } 
+        alert("Los resultados se muestran por consola, presione aceptar para ingresar una opción")
+        opcionMenu()  
     } 
-    else if(opcion1=4){
+    else if(opcion1==4){
         alert("El valor a abonar de su orden es : $"+ valorTotal + "\nEl pago sera recibido en caja al momento de retirar su Pedido\n\nMuchas Gracias "+nombreCliente + " por utilizar el servicio de autopedido.")
-        opcion1=0
-        opcion2=0
+        opcion1=-1
+        opcion2=-1
     }
 }
 
@@ -67,9 +104,10 @@ function subMenu (){
                 valorItem= 380
                 break
             case 4:
-                alert(nombreCliente+"  " + elijaMenu)
+                alert(elijaMenu)
                 seccionMenu()
                 Orden()
+                break
             default:
                  break
         }       
@@ -85,9 +123,10 @@ function subMenu (){
                 valorItem= 1000
                 break
             case 4:
-                alert(nombreCliente+"  " + elijaMenu)
+                alert(elijaMenu)
                 seccionMenu()
                 Orden()
+                break
             default:
                 break
         } 
@@ -103,14 +142,16 @@ function subMenu (){
                 valorItem= 1500
                 break
             case 4:
-                alert(nombreCliente+"  " + elijaMenu)
+                alert(elijaMenu)
                 seccionMenu()
                 Orden()
+                break
             default:
                 break
         }        
       }
     valorTotal = valorTotal + valorItem
+    opcion2 = 0
     Orden()
 }
 
@@ -121,12 +162,11 @@ while (nombreCliente === ""){
 
 let elijaMenu = nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu
 
-alert("¡Bienvenido/a al servicio de autopedido!\n"+nombreCliente+ elijaMenu)
+alert("¡Bienvenido/a al servicio de autopedido!\n"+ elijaMenu)
 seccionMenu()
 
 Orden()
 
-//opcionMenu()
-do{
-subMenu ()
-}while(opcion1!=0)
+while(opcion1!=0){
+    subMenu ()
+}
