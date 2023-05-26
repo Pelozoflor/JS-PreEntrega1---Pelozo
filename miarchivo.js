@@ -1,35 +1,41 @@
 
 let menu = "1 - Cafeteria\n2 - Hamburguesas\n3 - Combos\n4 - Terminar la compra \n5 - Opciones Delivery sin cargo"
-const menuCafeteria = [
-    {opcion:1, desc: "Cafe Grande", precio: 350, deliveryGratis: "NO"},
-    {opcion:2, desc: "Cafe Chico", precio: 300, deliveryGratis: "NO"}, 
-    {opcion:3, desc: "Latte", precio: 380, deliveryGratis: "NO"},
-    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
+const menuCategorias = [
+    {id:1, opcion:1, desc: "Cafe Grande", precio: 350, deliveryGratis: "NO",categoria: "Cafeteria"},
+    {id:2, opcion:2, desc: "Cafe Chico", precio: 300, deliveryGratis: "NO", categoria: "Cafeteria"}, 
+    {id:3, opcion:3, desc: "Latte", precio: 380, deliveryGratis: "NO", categoria: "Cafeteria"},
+    {id:4, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Cafeteria"},
+    {id:5, opcion:1, desc: "H/ Con queso", precio: 600, deliveryGratis: "NO", categoria: "Hamburguesas"},
+    {id:6, opcion:2, desc: "h/ Completa", precio: 750, deliveryGratis: "SI", categoria: "Hamburguesas"}, 
+    {id:7, opcion:3, desc: "Super hamburguesa", precio: 1000, deliveryGratis: "SI", categoria: "Hamburguesas"},
+    {id:8, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Hamburguesas"},
+    {id:9, opcion:1, desc: "H/ Con queso Combo", precio: 1100, deliveryGratis: "SI", categoria: "Combos"},
+    {id:10, opcion:2, desc: "h/ Completa Combo", precio: 1250, deliveryGratis: "SI", categoria: "Combos"}, 
+    {id:11, opcion:3, desc: "Super hamburguesa Combo", precio: 1500, deliveryGratis: "SI", categoria: "Combos"},
+    {id:12, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Combos"},
 ]
 
-const menuHamburguesas = [
-    {opcion:1, desc: "H/ Con queso", precio: 600, deliveryGratis: "NO"},
-    {opcion:2, desc: "h/ Completa", precio: 750, deliveryGratis: "SI"}, 
-    {opcion:3, desc: "Super hamburguesa", precio: 1000, deliveryGratis: "SI"},
-    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
-]
-
-const menuCombos = [
-    {opcion:1, desc: "H/ Con queso Combo", precio: 1100, deliveryGratis: "SI"},
-    {opcion:2, desc: "h/ Completa Combo", precio: 1250, deliveryGratis: "SI"}, 
-    {opcion:3, desc: "Super hamburguesa Combo", precio: 1500, deliveryGratis: "SI"},
-    {opcion:4, desc: "Volver", precio: "", deliveryGratis: ""},
-]
-
-let menuTerminar = "¿Desea terminar su pedido?\n\n1 - SI\n2 - NO"
+const menuCafeteria = menuCategorias.filter ((el) => el.categoria === "Cafeteria") 
+const menuHamburguesas = menuCategorias.filter ((el) => el.categoria === "Hamburguesas") 
+const menuCombos = menuCategorias.filter ((el) => el.categoria === "Combos")  
+let productoAgregado="Su eleccion se agrego al pedido, puede elegir otra opcion o Volver al Menu anterior"
 let opcion1 = 0
 let opcion2 = 0
 let valorItem = 0
 let valorTotal = 0
 
+function Producto(categoria, opcion, desc, precio, deliveryGratis) {
+    this.id= menuCategorias.lenght + 1;
+    this.categoria = categoria; 
+    this.opcion= opcion; 
+    this.desc= desc;
+    this.precio= precio;
+    this.deliveryGratis= deliveryGratis;
+}
+
+
 function DeliveryFree () {
-const filtrado = menuHamburguesas.concat(menuCombos)
-const resultado = filtrado.filter (el => el.deliveryGratis === "SI")
+const resultado = menuCategorias.filter ((el) => el.deliveryGratis === "SI")
 alert("Los resultados se muestran por consola, presione aceptar para ingresar una opción")
 console.log (resultado)
 opcion1=0
@@ -96,12 +102,15 @@ function subMenu (){
         switch (opcion2){
             case 1:
                 valorItem= 350
+                alert(productoAgregado)
                 break
             case 2:
                 valorItem= 300
+                alert(productoAgregado)
                 break
             case 3:
                 valorItem= 380
+                alert(productoAgregado)
                 break
             case 4:
                 alert(elijaMenu)
@@ -115,12 +124,15 @@ function subMenu (){
         switch (opcion2){
             case 1:
                 valorItem= 600
+                alert(productoAgregado)
                 break
             case 2:
                 valorItem= 750
+                alert(productoAgregado)
                 break
             case 3:
                 valorItem= 1000
+                alert(productoAgregado)
                 break
             case 4:
                 alert(elijaMenu)
@@ -134,12 +146,15 @@ function subMenu (){
         switch (opcion2){
             case 1:
                 valorItem= 1100
+                alert(productoAgregado)
                 break
             case 2:
                 valorItem= 1250
+                alert(productoAgregado)
                 break
             case 3:
                 valorItem= 1500
+                alert(productoAgregado)
                 break
             case 4:
                 alert(elijaMenu)
