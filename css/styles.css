@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.cabecera{
+display: flex;
+align-items: center;
+align-content:space-between;
+background-color: black;
+color: yellow;
+font-family: Arial, Helvetica, sans-serif;
+font-size: medium;
+padding: 1rem;
+}
+
+.cabecera div {
+    margin: 5px;
+    align-items: center
+}
+
+.cabecera h1{
+    font-size: large;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.cabecera img {
+    width: 10rem;
+    height: 10rem;
+
+}
+ul{
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+   
+}
+nav ul li {
+    width: 8rem;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    margin: .05rem;
+    display:flex,
+}
+ul{
+    text-decoration: none;
+    align-content: center;
+}
+
+#principal{
+    background-image: url(../img/espacio.webp);
+    background-size: 83rem 45rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+}
+
+.fraseInicio{
+display: flex;
+align-content: end;
+text-align: center;
+font-size: 3rem;
+font-style: oblique;
+color: yellow;
+background-color: rgba(36, 34, 34,.5);
+}
+
+.cards{
+display: flex;
+align-items: center;
+align-content: space-between;
+margin-top: 3rem;
+}
+
+.card {
+align-content: end;
+width: 25rem;
+height: 15rem;
+background-color: rgba(36, 34, 34,.5);
+font-size: 2rem;
+color: yellow;
+border: 1px solid gray;
+padding: 1rem;
+flex-direction: column;
+}
+
+.cards img{
+    width: 20rem;
+    height: 10rem;
+}
+footer{
+    background-color: yellow;
+    height: 5rem;
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+}
+
+footer ul li{
+    margin: 2rem;
+    align-items: center;
+    align-content: space-between;
+}

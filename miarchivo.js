@@ -1,187 +1,72 @@
 
-let menu = "1 - Cafeteria\n2 - Hamburguesas\n3 - Combos\n4 - Terminar la compra \n5 - Opciones Delivery sin cargo"
+ let menu = "1 - Cafeteria\n2 - Hamburguesas\n3 - Combos\n4 - Terminar la compra \n5 - Opciones Delivery sin cargo"
 const menuCategorias = [
-    {id:1, opcion:1, desc: "Cafe Grande", precio: 350, deliveryGratis: "NO",categoria: "Cafeteria"},
-    {id:2, opcion:2, desc: "Cafe Chico", precio: 300, deliveryGratis: "NO", categoria: "Cafeteria"}, 
-    {id:3, opcion:3, desc: "Latte", precio: 380, deliveryGratis: "NO", categoria: "Cafeteria"},
-    {id:4, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Cafeteria"},
-    {id:5, opcion:1, desc: "H/ Con queso", precio: 600, deliveryGratis: "NO", categoria: "Hamburguesas"},
-    {id:6, opcion:2, desc: "h/ Completa", precio: 750, deliveryGratis: "SI", categoria: "Hamburguesas"}, 
-    {id:7, opcion:3, desc: "Super hamburguesa", precio: 1000, deliveryGratis: "SI", categoria: "Hamburguesas"},
-    {id:8, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Hamburguesas"},
-    {id:9, opcion:1, desc: "H/ Con queso Combo", precio: 1100, deliveryGratis: "SI", categoria: "Combos"},
-    {id:10, opcion:2, desc: "h/ Completa Combo", precio: 1250, deliveryGratis: "SI", categoria: "Combos"}, 
-    {id:11, opcion:3, desc: "Super hamburguesa Combo", precio: 1500, deliveryGratis: "SI", categoria: "Combos"},
-    {id:12, opcion:4, desc: "Volver", precio: "", deliveryGratis: "", categoria: "Combos"},
+    {id:1, opcion:1, desc: "Cafe Grande", precio: 350, deliveryGratis: "NO",categoria: "Cafeteria", img: "cafeGrande.jpg"},
+    {id:2, opcion:2, desc: "Cafe Chico", precio: 300, deliveryGratis: "NO", categoria: "Cafeteria", img: "cafeChico.jpg"}, 
+    {id:3, opcion:3, desc: "Latte", precio: 380, deliveryGratis: "NO", categoria: "Cafeteria", img: "latte.jpg"},
+    {id:4, opcion:1, desc: "Array de Sabores", precio: 600, deliveryGratis: "NO", categoria: "Hamburguesas", img: "ArrayDeSabores.jpg"},
+    {id:5, opcion:2, desc: "Destructuring", precio: 750, deliveryGratis: "SI", categoria: "Hamburguesas", img: "Destructuring.jpg"}, 
+    {id:6, opcion:3, desc: "Alert-Alert", precio: 1000, deliveryGratis: "SI", categoria: "Hamburguesas", img: "Alert-Alert.jpg"},
+    {id:7, opcion:1, desc: "Combo Inner", precio: 1100, deliveryGratis: "SI", categoria: "Combos", img: "ComboInner.jpg"},
+    {id:8, opcion:2, desc: "Combo Constructor", precio: 1250, deliveryGratis: "SI", categoria: "Combos", img: "ComboConstructor.jpg"}, 
+    {id:9, opcion:3, desc: "Combo Todo al Imput", precio: 1500, deliveryGratis: "SI", categoria: "Combos", img: "ComboTodoImput.jpg"},
+    
 ]
 
 const menuCafeteria = menuCategorias.filter ((el) => el.categoria === "Cafeteria") 
 const menuHamburguesas = menuCategorias.filter ((el) => el.categoria === "Hamburguesas") 
 const menuCombos = menuCategorias.filter ((el) => el.categoria === "Combos")  
-let productoAgregado="Su eleccion se agrego al pedido, puede elegir otra opcion o Volver al Menu anterior"
-let opcion1 = 0
-let opcion2 = 0
-let valorItem = 0
-let valorTotal = 0
+
+const btnHam = document.querySelector(".menu_Ham")
+const btnCom = document.querySelector(".menu_Com")
+const btnCaf = document.querySelector(".menu_Caf")
+const btnFree = document.querySelector(".menu_Free")
+const btnOn = document.querySelector(".menu_On")
+const cartas = document.querySelector(".cards")
+
 
 function Producto(categoria, opcion, desc, precio, deliveryGratis) {
-    this.id= menuCategorias.lenght + 1;
-    this.categoria = categoria; 
-    this.opcion= opcion; 
-    this.desc= desc;
-    this.precio= precio;
-    this.deliveryGratis= deliveryGratis;
+    this.id = menuCategorias.length + 1;
+    this.categoria = categoria;
+    this.opcion = opcion;
+    this.desc = desc;
+    this.precio = precio;
+    this.deliveryGratis = deliveryGratis;
 }
 
+function crearHTML(elem) {
+    cartas.innerHTML = "";
+    
+    elem.forEach((el) => {
+      const cardHTML = `
+        <div class="card">
+          <img src="img/${el.img}" alt="Imagen">
+          <h3>${el.desc}</h3>
+          <p>$ ${el.precio}</p>
+        </div>`;
+      cartas.innerHTML += cardHTML;
+    });
+  }
 
-function DeliveryFree () {
-const resultado = menuCategorias.filter ((el) => el.deliveryGratis === "SI")
-alert("Los resultados se muestran por consola, presione aceptar para ingresar una opción")
-console.log (resultado)
-opcion1=0
+function DeliveryFree() {
+    const resultado = menuCategorias.filter((el) => el.deliveryGratis === "SI");
+    return resultado;
 }
 
+btnHam.addEventListener("click", () => {
+    crearHTML(menuHamburguesas);
+})
+  
+btnCom.addEventListener("click", () => {
+    crearHTML(menuCombos);
+})
+  
+btnCaf.addEventListener("click", () => {
+    crearHTML(menuCafeteria);
+})
+  
+btnFree.addEventListener("click", () => {
+    let delFree= DeliveryFree();
+    crearHTML(delFree);
+})
 
-function seccionMenu (){
-    opcion1= Number(prompt("Ingrese una opción: "))
-    while(isNaN(opcion1)){
-        opcion1= Number(prompt("Ingrese una opción valida: "))          
-    }
-    if(opcion1===4){
-        alert("Gracias por usar nuestro servicio, hasta pronto!")
-    }
-}
-
-function opcionMenu (){
-    opcion2= Number(prompt("Ingrese una opción: "))
-    while(isNaN(opcion2) || opcion2>4){
-        opcion2= Number(prompt("Ingrese una opción valida: "))          
-    }
-}
-
-
-function Orden () {
-    if(opcion1!=4){
-        switch (opcion1){
-            case 1:
-                console.log(menuCafeteria)
-                break
-            case 2:
-                console.log(menuHamburguesas)
-                break
-            case 3:
-                console.log(menuCombos)
-                break
-            case 4:
-                break
-            case 5:
-                DeliveryFree()
-                alert(elijaMenu)
-                seccionMenu()
-                Orden()
-                break
-            default:
-                alert(elijaMenu)
-                seccionMenu()
-                Orden()
-                break  
-            } 
-        alert("Los resultados se muestran por consola, presione aceptar para ingresar una opción")
-        opcionMenu()  
-    } 
-    else if(opcion1==4){
-        alert("El valor a abonar de su orden es : $"+ valorTotal + "\nEl pago sera recibido en caja al momento de retirar su Pedido\n\nMuchas Gracias "+nombreCliente + " por utilizar el servicio de autopedido.")
-        opcion1=-1
-        opcion2=-1
-    }
-}
-
-
-function subMenu (){
-      if (opcion1===1) {
-        switch (opcion2){
-            case 1:
-                valorItem= 350
-                alert(productoAgregado)
-                break
-            case 2:
-                valorItem= 300
-                alert(productoAgregado)
-                break
-            case 3:
-                valorItem= 380
-                alert(productoAgregado)
-                break
-            case 4:
-                alert(elijaMenu)
-                seccionMenu()
-                Orden()
-                break
-            default:
-                 break
-        }       
-      }else if (opcion1===2) {
-        switch (opcion2){
-            case 1:
-                valorItem= 600
-                alert(productoAgregado)
-                break
-            case 2:
-                valorItem= 750
-                alert(productoAgregado)
-                break
-            case 3:
-                valorItem= 1000
-                alert(productoAgregado)
-                break
-            case 4:
-                alert(elijaMenu)
-                seccionMenu()
-                Orden()
-                break
-            default:
-                break
-        } 
-      }else if (opcion1===3) {
-        switch (opcion2){
-            case 1:
-                valorItem= 1100
-                alert(productoAgregado)
-                break
-            case 2:
-                valorItem= 1250
-                alert(productoAgregado)
-                break
-            case 3:
-                valorItem= 1500
-                alert(productoAgregado)
-                break
-            case 4:
-                alert(elijaMenu)
-                seccionMenu()
-                Orden()
-                break
-            default:
-                break
-        }        
-      }
-    valorTotal = valorTotal + valorItem
-    opcion2 = 0
-    Orden()
-}
-
-let nombreCliente = prompt("Ingrese su nombre para realizar un pedido")
-while (nombreCliente === ""){
-    nombreCliente= prompt("Debe ingresar un nombre para realizar el pedido")
-}
-
-let elijaMenu = nombreCliente+" Te pedimos que elijas una de las siguientes opciones para que empezemos a preparar tu pedido.. \n\n"+menu
-
-alert("¡Bienvenido/a al servicio de autopedido!\n"+ elijaMenu)
-seccionMenu()
-
-Orden()
-
-while(opcion1!=0){
-    subMenu ()
-}
