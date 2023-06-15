@@ -89,6 +89,25 @@ padding: 1rem;
 flex-direction: column;
 }
 
+#pedidoOnLine {
+    margin-left: 15rem;
+    width: 25rem;
+    height: 15rem;
+    background-color: rgba(36, 34, 34,.8);
+    font-size: 2rem;
+    color: yellow;
+    border: 1px solid gray;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.btnOL{
+    border: solid;
+    background-color: yellow;
+    color: black;
+    font-size: medium;
+    padding: .5rem;
+}
 .cards img{
     width: 20rem;
     height: 10rem;

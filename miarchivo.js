@@ -70,3 +70,63 @@ btnFree.addEventListener("click", () => {
     crearHTML(delFree);
 })
 
+
+function ordenOnlineHTML() {
+    cartas.innerHTML =`
+          <form id="pedidoOnLine">
+          <p>Gracias por usar nuestro servicio de pedidos Online</p>
+          <div>
+            <input id= "nombreCliente" type="text" placeholder="Ingrese su nombre">
+            <select id="opcionesSelect">
+            <option value=""></option>            
+            </select>
+          </div>
+          <div>
+            <button id="btnAgregar" class= "btnOL">Agregar</button>
+            <button id="btnFinalizar" class= "btnOL">Finalizar Pedido</button>
+          </div>
+          </form>`;
+    menuCategorias.forEach((el) => {
+    const opcion = document.createElement('option');
+    opcion.value = el.desc;
+    opcion.textContent = el.desc;
+    opcionesSelect.appendChild(opcion);
+});
+
+const btnAgregar = document.getElementById('btnAgregar');
+const btnFinalizar = document.getElementById('btnFinalizar');
+const opcionesDeSeleccion = document.getElementById('opcionesSelect');
+const nombreInput = document.getElementById('nombreCliente')
+const nombre = nombreInput.value;
+
+btnAgregar.addEventListener('click', () => {
+const opcionElegida = opcionesDeSeleccion.value;
+const opcion = menuCategorias.find((el) => el.desc === opcionElegida);
+
+const pedido = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
+pedido.push(opcion);
+sessionStorage.setItem('pedido', JSON.stringify(pedido));
+nombreInput.value = '';
+opcionesDeSeleccion.selectedIndex = 0;
+
+const pedidoAgregado=
+cartas.innerHTML = "<p>El producto ${opcion.Elegida} se agregó al carrito de pedidos. Puede seleccionar otra opcion o finalizar el pedido</p>";
+});
+
+btnFinalizar.addEventListener('click', () => {
+const pedido = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
+
+let total = 0;
+pedido.forEach((opcion) => {
+   total += opcion.precio;
+  });
+
+alert(`El total del pedido a abonar es: $${total}`);
+
+sessionStorage.removeItem('pedido');
+});
+}
+
+btnOn.addEventListener("click", () => {
+  ordenOnlineHTML()  
+})
