@@ -23,7 +23,7 @@ const btnCaf = document.querySelector(".menu_Caf")
 const btnFree = document.querySelector(".menu_Free")
 const btnOn = document.querySelector(".menu_On")
 const cartas = document.querySelector(".cards")
-
+const elegidos = document.querySelector(".elegidos")
 
 function Producto(categoria, opcion, desc, precio, deliveryGratis) {
     this.id = menuCategorias.length + 1;
@@ -70,6 +70,20 @@ btnFree.addEventListener("click", () => {
     crearHTML(delFree);
 })
 
+btnOn.addEventListener("click", () => {
+  ordenOnlineHTML()  
+})
+function mostrarPedido(){
+  elegidos.innerHTML = "";
+  const   productoAgregado = `<p class="agregado"> ${opcionElegida.value}/n El producto se agregó al carrito de pedidos. Puede seleccionar otra opcion o finalizar el pedido</p>`
+  form.appendChild(productoAgregado);
+}
+
+// function total(){
+//   cartas.innerHTML = `<p id= "total" class= "card"> El total del pedido a abonar es: $${total}/n Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line`
+//   totalAbonar= document.getElementById('total');
+//   form.appendChild(totalAbonar);
+// }
 
 function ordenOnlineHTML() {
     cartas.innerHTML =`
@@ -78,7 +92,7 @@ function ordenOnlineHTML() {
           <div>
             <input id= "nombreCliente" type="text" placeholder="Ingrese su nombre">
             <select id="opcionesSelect">
-            <option value=""></option>            
+            <option id= "miOpcion" value=""></option>            
             </select>
           </div>
           <div>
@@ -91,42 +105,38 @@ function ordenOnlineHTML() {
     opcion.value = el.desc;
     opcion.textContent = el.desc;
     opcionesSelect.appendChild(opcion);
+    const form = document.getElementById('pedidoOnLine');
 });
 
 const btnAgregar = document.getElementById('btnAgregar');
-const btnFinalizar = document.getElementById('btnFinalizar');
 const opcionesDeSeleccion = document.getElementById('opcionesSelect');
+const btnFinalizar = document.getElementById('btnFinalizar');
 const nombreInput = document.getElementById('nombreCliente')
-const nombre = nombreInput.value;
 
-btnAgregar.addEventListener('click', () => {
-const opcionElegida = opcionesDeSeleccion.value;
-const opcion = menuCategorias.find((el) => el.desc === opcionElegida);
-
-const pedido = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
-pedido.push(opcion);
-sessionStorage.setItem('pedido', JSON.stringify(pedido));
-nombreInput.value = '';
-opcionesDeSeleccion.selectedIndex = 0;
-
-const pedidoAgregado=
-cartas.innerHTML = "<p>El producto ${opcion.Elegida} se agregó al carrito de pedidos. Puede seleccionar otra opcion o finalizar el pedido</p>";
+btnAgregar.addEventListener('click', (e) => {
+  e.preventDefault();
+  const nombre = nombreInput.value;
+  const opcionElegida = opcionesDeSeleccion.value;
+  const opcion = menuCategorias.find((el) => el.desc === opcionElegida);
+  const pedido = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
+  pedido.push(opcion);
+  sessionStorage.setItem('pedido', JSON.stringify(pedido));
+  opcionesSelect.selectedIndex = 0;
+  elegidos.innerHTML += `<p class= "agregado" > ${opcion.desc} $${opcion.precio}</p>`;
 });
 
-btnFinalizar.addEventListener('click', () => {
-const pedido = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
-
+btnFinalizar.addEventListener('click', (e) => {
+e.preventDefault(); 
+const pedidoFinalizado = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
 let total = 0;
-pedido.forEach((opcion) => {
-   total += opcion.precio;
-  });
+pedidoFinalizado.forEach((prod) => {
+   total += prod.precio;
+});
 
-alert(`El total del pedido a abonar es: $${total}`);
-
-sessionStorage.removeItem('pedido');
+elegidos.innerHTML += `<p class= "agregado" > El total del pedido a abonar es: $${total}/n</p><p class= "agregado"> Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line</p>`;
+//alert(`El total del pedido a abonar es: $${total}/n Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line`);
+sessionStorage.removeItem('pedido')
+nombreInput.value = '';
 });
 }
 
-btnOn.addEventListener("click", () => {
-  ordenOnlineHTML()  
-})
