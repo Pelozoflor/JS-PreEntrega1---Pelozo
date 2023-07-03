@@ -43,6 +43,7 @@ function crearHTML(elem) {
           <img src="img/${el.img}" alt="Imagen">
           <h3>${el.desc}</h3>
           <p>$ ${el.precio}</p>
+          <button id="btnAgregar" class= "btnOL">Agregar</button>
         </div>`;
       cartas.innerHTML += cardHTML;
     });
@@ -73,11 +74,11 @@ btnFree.addEventListener("click", () => {
 btnOn.addEventListener("click", () => {
   ordenOnlineHTML()  
 })
-function mostrarPedido(){
-  elegidos.innerHTML = "";
-  const   productoAgregado = `<p class="agregado"> ${opcionElegida.value}/n El producto se agregó al carrito de pedidos. Puede seleccionar otra opcion o finalizar el pedido</p>`
-  form.appendChild(productoAgregado);
-}
+// function mostrarPedido(){
+//   elegidos.innerHTML = "";
+//   const   productoAgregado = `<p class="agregado"> ${opcionElegida.value}/n El producto se agregó al carrito de pedidos. Puede seleccionar otra opcion o finalizar el pedido</p>`
+//   form.appendChild(productoAgregado);
+// }
 
 // function total(){
 //   cartas.innerHTML = `<p id= "total" class= "card"> El total del pedido a abonar es: $${total}/n Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line`
@@ -125,17 +126,20 @@ btnAgregar.addEventListener('click', (e) => {
   elegidos.innerHTML += `<p class= "agregado" > ${opcion.desc} $${opcion.precio}</p>`;
 });
 
+
+
 btnFinalizar.addEventListener('click', (e) => {
-e.preventDefault(); 
+e.preventDefault();
 const pedidoFinalizado = sessionStorage.getItem('pedido') ? JSON.parse(sessionStorage.getItem('pedido')) : [];
 let total = 0;
-pedidoFinalizado.forEach((prod) => {
-   total += prod.precio;
+pedidoFinalizado.forEach((opcion) => {
+    total += opcion.precio;
 });
 
-elegidos.innerHTML += `<p class= "agregado" > El total del pedido a abonar es: $${total}/n</p><p class= "agregado"> Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line</p>`;
-//alert(`El total del pedido a abonar es: $${total}/n Gracias ${nombreInput.value} por hacer tu pedido a traves de pedidos On Line`);
-sessionStorage.removeItem('pedido')
+elegidos.innerHTML += `<p class="agregado">El total del pedido a abonar es: $${total}\n</p><p class="agregado">Gracias ${nombreInput.value} por hacer tu pedido a través de pedidos Online</p>`;
+  //alert(`El total del pedido a abonar es: $${total}\nGracias ${nombreInput.value} por hacer tu pedido a través de pedidos Online`);
+  
+sessionStorage.removeItem('pedido');
 nombreInput.value = '';
 });
 }

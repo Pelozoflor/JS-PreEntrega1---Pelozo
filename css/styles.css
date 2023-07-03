@@ -71,10 +71,9 @@ background-color: rgba(36, 34, 34,.5);
 }
 
 .cards{
-display: flex;
-align-items: center;
-align-content: space-between;
-margin-top: 3rem;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 20px;
 }
 
 .card {
@@ -137,3 +136,5 @@ footer ul li{
     align-items: center;
     align-content: space-between;
 }
+
+
