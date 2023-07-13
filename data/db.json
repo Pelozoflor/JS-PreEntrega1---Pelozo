@@ -1,0 +1,84 @@
+[
+    {
+      "id": 1,
+      "opcion": 1,
+      "desc": "Cafe Grande",
+      "precio": 350,
+      "deliveryGratis": "NO",
+      "categoria": "Cafeteria",
+      "img": "cafeGrande.jpg"
+    },
+    {
+      "id": 2,
+      "opcion": 2,
+      "desc": "Cafe Chico",
+      "precio": 300,
+      "deliveryGratis": "NO",
+      "categoria": "Cafeteria",
+      "img": "cafeChico.jpg"
+    },
+    {
+      "id": 3,
+      "opcion": 3,
+      "desc": "Latte",
+      "precio": 380,
+      "deliveryGratis": "NO",
+      "categoria": "Cafeteria",
+      "img": "latte.jpg"
+    },
+    {
+      "id": 4,
+      "opcion": 1,
+      "desc": "Array de Sabores",
+      "precio": 600,
+      "deliveryGratis": "NO",
+      "categoria": "Hamburguesas",
+      "img": "ArrayDeSabores.jpg"
+    },
+    {
+      "id": 5,
+      "opcion": 2,
+      "desc": "Destructuring",
+      "precio": 750,
+      "deliveryGratis": "SI",
+      "categoria": "Hamburguesas",
+      "img": "Destructuring.jpg"
+    },
+    {
+      "id": 6,
+      "opcion": 3,
+      "desc": "Alert-Alert",
+      "precio": 1000,
+      "deliveryGratis": "SI",
+      "categoria": "Hamburguesas",
+      "img": "Alert-Alert.jpg"
+    },
+    {
+      "id": 7,
+      "opcion": 1,
+      "desc": "Combo Inner",
+      "precio": 1100,
+      "deliveryGratis": "SI",
+      "categoria": "Combos",
+      "img": "ComboInner.jpg"
+    },
+    {
+      "id": 8,
+      "opcion": 2,
+      "desc": "Combo Constructor",
+      "precio": 1250,
+      "deliveryGratis": "SI",
+      "categoria": "Combos",
+      "img": "ComboConstructor.jpg"
+    },
+    {
+      "id": 9,
+      "opcion": 3,
+      "desc": "Combo Todo al Imput",
+      "precio": 1500,
+      "deliveryGratis": "SI",
+      "categoria": "Combos",
+      "img": "ComboTodoImput.jpg"
+    }
+  ]
+  

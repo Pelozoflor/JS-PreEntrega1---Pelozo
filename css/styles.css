@@ -55,8 +55,8 @@ ul{
 
 #principal{
     background-image: url(../img/espacio.webp);
-    background-size: 83rem 45rem;
-    height: 45rem;
+    background-size: 83rem 70rem;
+    height: 70rem;
     background-repeat: no-repeat;
 }
 
@@ -73,15 +73,15 @@ background-color: rgba(36, 34, 34,.5);
 .cards{
 display: grid;
 grid-template-columns: repeat(3, 1fr);
-gap: 20px;
+gap: 30px;
 }
 
 .card {
 align-content: end;
-width: 25rem;
-height: 15rem;
+width: 23rem;
+height: 16rem;
 background-color: rgba(36, 34, 34,.5);
-font-size: 2rem;
+font-size: 1.5rem;
 color: yellow;
 border: 1px solid gray;
 padding: 1rem;
@@ -91,7 +91,7 @@ flex-direction: column;
 #pedidoOnLine {
     margin-left: 15rem;
     width: 25rem;
-    height: 15rem;
+    height: 8rem;
     background-color: rgba(36, 34, 34,.8);
     font-size: 2rem;
     color: yellow;
@@ -101,11 +101,12 @@ flex-direction: column;
 }
 
 .btnOL{
-    border: solid;
+    border:rgb(24, 23, 23);
     background-color: yellow;
-    color: black;
+    color: rgba(0, 0, 0, 0.932);
     font-size: medium;
     padding: .5rem;
+    border-radius: 0.3;
 }
 .cards img{
     width: 20rem;
