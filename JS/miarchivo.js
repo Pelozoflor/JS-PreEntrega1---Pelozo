@@ -9,10 +9,10 @@ const menuBD = async () => {
 
 window.addEventListener('load', menuBD);
 
-const menuCafeteria = [];
-const menuHamburguesas = [];
-const menuCombos = [];
-const deliveryFree = [];
+let menuCafeteria = [];
+let menuHamburguesas = [];
+let menuCombos = [];
+let deliveryFree = [];
 
 const menuSeleccionado= async ()=> {
     const response = await fetch('../data/db.json');
@@ -31,6 +31,7 @@ const btnOn = document.querySelector(".menu_On")
 const cartas = document.querySelector(".cards")
 const elegidos = document.querySelector(".elegidos")
 const miPedido = document.querySelector(".pedido")
+
 
 function producto(categoria, opcion, desc, precio, deliveryGratis) {
     this.id = menuCategorias.length + 1;
@@ -74,20 +75,36 @@ function crearHTML(elem) {
 -
 
 btnHam.addEventListener("click", () => {
-    crearHTML(menuHamburguesas);
-})
-  
+  menuSeleccionado()
+    .then(() => {
+      elegidos.innerHTML = "";
+      crearHTML(menuHamburguesas);
+    });
+});
+
 btnCom.addEventListener("click", () => {
-    crearHTML(menuCombos);
-})
-  
+  menuSeleccionado()
+    .then(() => {
+      elegidos.innerHTML = "";
+      crearHTML(menuCombos);
+    });
+});
+
 btnCaf.addEventListener("click", () => {
-    crearHTML(menuCafeteria);
-})
-  
+  menuSeleccionado()
+    .then(() => {
+      elegidos.innerHTML = "";
+      crearHTML(menuCafeteria);
+    });
+});
+
 btnFree.addEventListener("click", () => {
-    crearHTML(deliveryFree);
-})
+  menuSeleccionado()
+    .then(() => {
+      elegidos.innerHTML = "";
+      crearHTML(deliveryFree);
+    });
+});
 
 btnOn.addEventListener("click", () => {
   ordenOnlineHTML()  
