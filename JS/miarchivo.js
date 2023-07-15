@@ -2,7 +2,7 @@
 let menuCategorias = []; 
 
 const menuBD = async () => {
-    const response = await fetch('../data/db.json');
+    const response = await fetch('./data/db.json');
     menuCategorias = await response.json();
     crearHTML(menuCategorias);
   }
@@ -15,7 +15,7 @@ let menuCombos = [];
 let deliveryFree = [];
 
 const menuSeleccionado= async ()=> {
-    const response = await fetch('../data/db.json');
+    const response = await fetch('./data/db.json');
     menuCategorias = await response.json();
     menuCafeteria = menuCategorias.filter((el) => el.categoria === "Cafeteria");
     menuHamburguesas = menuCategorias.filter((el) => el.categoria === "Hamburguesas");
@@ -48,7 +48,7 @@ function crearHTML(elem) {
   elem.forEach((el) => {
     const cardHTML = `
       <div class="card">
-        <img src="img/${el.img}" alt="Imagen">
+        <img src="./img/${el.img}" alt="Imagen">
         <h3>${el.desc}</h3>
         <p>$ ${el.precio}</p>
         <button class="btnAgregar">Agregar</button>
